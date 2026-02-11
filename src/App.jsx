@@ -14,22 +14,24 @@ import ContactList from './components/ContactList'
  * 🎯 REACT MID-LEVEL CHALLENGE
  * ============================================
  * 
- * Implement a Contact Manager using Redux Toolkit.
- * Complete TODOs 1-3 in contactsSlice.js
- * Complete TODO 4 in ContactForm.jsx
+ * Implement a Contact Manager.
+ * Complete TODOs 1-2 below and TODOs 3-4 in ContactForm.jsx
  */
 
 function App() {
   const dispatch = useDispatch()
-  const contacts = useSelector((state) => state.contacts.items)
-  const editingContact = useSelector((state) => state.contacts.editingContact)
 
+  // TODO 1: Use useSelector to get contacts and editingContact from Redux state
+  // - state.contacts.items contains the contacts array
+  // - state.contacts.editingContact contains the contact being edited (or null)
+  const contacts = [] // Fix this
+  const editingContact = null // Fix this
+
+  // TODO 2: Implement handleSaveContact
+  // - If editingContact exists: dispatch updateContact with { id, name, email, phone }
+  // - If editingContact is null: dispatch addContact with { name, email, phone }
   const handleSaveContact = (contactData) => {
-    if (editingContact) {
-      dispatch(updateContact({ id: editingContact.id, ...contactData }))
-    } else {
-      dispatch(addContact(contactData))
-    }
+    // Implement here
   }
 
   const handleDeleteContact = (contactId) => {
@@ -48,14 +50,14 @@ function App() {
     <div className="app-container">
       <header className="app-header">
         <h1 className="app-title">Contact Manager</h1>
-        <p className="app-subtitle">React Mid-Level Challenge • Redux Toolkit</p>
+        <p className="app-subtitle">React Mid-Level Challenge</p>
       </header>
 
       <div className="challenge-box">
         <div className="challenge-title">📋 Instructions</div>
         <div className="challenge-text">
-          Complete <span className="todo-marker">3 TODOs</span> in <code>contactsSlice.js</code> and
-          <span className="todo-marker"> 1 TODO</span> in <code>ContactForm.jsx</code>
+          Complete <span className="todo-marker">2 TODOs</span> in <code>App.jsx</code> and
+          <span className="todo-marker"> 2 TODOs</span> in <code>ContactForm.jsx</code>
         </div>
       </div>
 

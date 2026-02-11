@@ -1,9 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
 
-/**
- * 🎯 CONTACTS SLICE - Complete TODOs 1-3
- */
-
 const initialState = {
   items: [],
   editingContact: null,
@@ -13,30 +9,26 @@ const contactsSlice = createSlice({
   name: 'contacts',
   initialState,
   reducers: {
-    // TODO 1: Implement addContact reducer
-    // - Generate id using Date.now().toString()
-    // - Add the new contact to state.items
     addContact: (state, action) => {
-      // action.payload = { name, email, phone }
-      // Implement here
+      const newContact = {
+        id: Date.now().toString(),
+        ...action.payload,
+      }
+      state.items.push(newContact)
     },
 
-    // TODO 2: Implement updateContact reducer
-    // - Find the contact by id and update its data
-    // - Clear editingContact
     updateContact: (state, action) => {
-      // action.payload = { id, name, email, phone }
-      // Implement here
+      const index = state.items.findIndex(c => c.id === action.payload.id)
+      if (index !== -1) {
+        state.items[index] = action.payload
+      }
+      state.editingContact = null
     },
 
-    // TODO 3: Implement deleteContact reducer
-    // - Remove the contact with the given id from state.items
     deleteContact: (state, action) => {
-      // action.payload = contactId
-      // Implement here
+      state.items = state.items.filter(c => c.id !== action.payload)
     },
 
-    // ✅ Already implemented
     setEditingContact: (state, action) => {
       state.editingContact = action.payload
     },

@@ -1,6 +1,6 @@
 # 🎯 React Mid-Level Challenge
 
-## Contact Manager with Redux Toolkit | ⏱️ 20 minutes
+## Contact Manager | ⏱️ 20 minutes
 
 ```bash
 npm install && npm run dev
@@ -8,48 +8,54 @@ npm install && npm run dev
 
 ---
 
-## 📝 TODOs (4 total)
+## 📝 TODOs (6 total)
 
-### `src/store/contactsSlice.js`
+### `src/App.jsx`
 
-| # | Task |
-|---|------|
-| 1 | Implement `addContact` reducer |
-| 2 | Implement `updateContact` reducer |
-| 3 | Implement `deleteContact` reducer |
+| # | Task | Concept |
+|---|------|---------|
+| 1 | Use `useSelector` to get data from Redux | React-Redux hooks |
+| 2 | Implement `handleSaveContact` using dispatch | Conditional logic |
 
 ### `src/components/ContactForm.jsx`
 
-| # | Task |
-|---|------|
-| 4 | Complete `handleSubmit` with validation |
+| # | Task | Concept |
+|---|------|---------|
+| 3 | Create state for form fields | `useState` |
+| 4 | Sync form with `editingContact` | `useEffect` |
+| 5 | Implement `handleSubmit` with validation | Form handling |
+| 6 | Create the input fields (controlled components) | JSX, controlled inputs |
 
 ---
 
 ## 📚 Quick Reference
 
 ```javascript
-// Redux Toolkit reducers can mutate state directly (uses Immer)
-addContact: (state, action) => {
-  const newContact = {
-    id: Date.now().toString(),
-    ...action.payload
-  }
-  state.items.push(newContact)
-}
+// useState
+const [name, setName] = useState('')
 
-// Update item
-updateContact: (state, action) => {
-  const index = state.items.findIndex(c => c.id === action.payload.id)
-  if (index !== -1) {
-    state.items[index] = action.payload
-  }
-}
+// useSelector
+const data = useSelector((state) => state.contacts.items)
 
-// Delete item
-deleteContact: (state, action) => {
-  state.items = state.items.filter(c => c.id !== action.payload)
-}
+// useEffect with dependency
+useEffect(() => {
+  if (editingContact) {
+    setName(editingContact.name)
+  } else {
+    setName('')
+  }
+}, [editingContact])
+
+// Controlled input
+<input
+  type="text"
+  value={name}
+  onChange={(e) => setName(e.target.value)}
+/>
+
+// dispatch actions
+dispatch(addContact({ name, email, phone }))
+dispatch(updateContact({ id, name, email, phone }))
 ```
 
 ---
@@ -59,23 +65,24 @@ deleteContact: (state, action) => {
 ```
 src/
 ├── store/
-│   ├── index.js            # ✅ Store configured
-│   └── contactsSlice.js    # 👈 TODOs 1-3
+│   ├── index.js            # ✅ Done
+│   └── contactsSlice.js    # ✅ Done
 ├── components/
-│   ├── ContactForm.jsx     # 👈 TODO 4
+│   ├── ContactForm.jsx     # 👈 TODOs 3-6
 │   └── ContactList.jsx     # ✅ Done
-├── App.jsx                 # ✅ Done (uses Redux)
-└── main.jsx                # ✅ Provider configured
+├── App.jsx                 # 👈 TODOs 1-2
+└── main.jsx                # ✅ Done
 ```
 
 ---
 
 ## ✅ Checklist
 
+- [ ] Form fields render correctly
 - [ ] Add contact works
-- [ ] Edit contact works
-- [ ] Delete contact works
-- [ ] Validation shows error for empty fields
+- [ ] Edit contact populates form
+- [ ] Update contact works
+- [ ] Validation shows error
 
 ---
 
