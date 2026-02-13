@@ -8,6 +8,19 @@ npm install && npm run dev
 
 ---
 
+## ⚠️ Important: Disable AI Assistance
+
+Before starting, disable AI autocomplete in your editor:
+
+**Cursor:**
+- Open Settings → Features → Disable "Copilot++" and "Tab Autocomplete"
+
+**VS Code + GitHub Copilot:**
+- Click the Copilot icon in the status bar → Disable for this workspace
+- Or: `Ctrl/Cmd + Shift + P` → "GitHub Copilot: Disable"
+
+---
+
 ## 📝 TODOs (6 total)
 
 ### `src/App.jsx`
